@@ -53,7 +53,7 @@ The final height for systematic search is 7.43837254612423
 The final height for search with layers is 11.378883254225343
 The final height for search with tree is 8.808003603782272
 ```
-- for mode 3 we obtain a table with 3 columns. First column is the number of boxes, second column is the time in miliseconds that it takes given algorithm to run, third column is the coefficient q calculated from the formula:
+- for mode 3 we obtain a table with 3 columns. First column is the number of boxes, second column is the time in miliseconds that it takes given algorithm to run, third column is the coefficient q calculated from the formula:  
 ![Image](/images/formula.png)  
 Example output for one of the algorithms:
 ```
