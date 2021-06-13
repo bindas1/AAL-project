@@ -33,4 +33,10 @@ Execution parameters (optional arguments):
 Additionaly we can use ```generate.py``` to generate specific data for standard input and use it as pipeline with method 1.
 ```python generate.py –n100 -bw5 -bl10 | python main.py –m1```
 
-
+## Input and output
+Input should be a text file (any format that can be used for stdin) and be structured like in the example below:
+20,10,10
+50,30,20
+10,20,5
+...
+All edges should be separated by commas and each cuboid should be written in new line.
