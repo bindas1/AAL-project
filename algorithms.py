@@ -3,7 +3,6 @@ import itertools
 import sys
 from Node import Node
 
-
 def naive_sort(bin_, boxes):
     # metoda naiwna z sortowaniem
     bin_copy = bin_.copy()
@@ -27,6 +26,7 @@ def naive(bin_, boxes):
     a_copy = boxes.copy()
     # plot_naive = [0]
 
+    cubes = []
     for box in a_copy:
         bin_copy[2] += min(box)
         # plot_naive.append(bin_copy[2])

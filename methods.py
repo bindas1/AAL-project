@@ -2,8 +2,6 @@ import sys
 import math
 from timeit import default_timer as timer
 import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
 
 import algorithms
 import generate
@@ -75,17 +73,6 @@ def method_3(args):
         times_naive.append(times/args.samples)
         theoretical_times_naive.append(n + 1)
 
-        if n <= 5:
-            # print("Systematic search:")
-            times = 0
-            for s in range(args.samples):
-                start = timer()
-                algorithms.systematic_search(bin_, boxes)
-                end = timer()
-                times += (end - start) * 1000
-            times_sys_search.append(times/args.samples)
-            theoretical_times_sys_search.append(math.factorial(n))
-
         # print("Search with layers:")
         times = 0
         for s in range(args.samples):
@@ -106,11 +93,28 @@ def method_3(args):
         times_tree.append(times/args.samples)
         theoretical_times_tree.append(n + n * np.log(n) + n ** 2 + 1)
 
+        if n <= 7:
+            # print("Systematic search:")
+            times = 0
+            for s in range(args.samples):
+                start = timer()
+                algorithms.systematic_search(bin_, boxes)
+                end = timer()
+                times += (end - start) * 1000
+            times_sys_search.append(times/args.samples)
+            theoretical_times_sys_search.append(math.factorial(n))
+
     # calculating q(n) for naive
     times = [times_naive_sort, times_naive, times_layers, times_tree]
     theoretical_times = [theoretical_times_naive_sort, theoretical_times_naive, theoretical_times_layers,
                          theoretical_times_tree]
     algorithms_names = ['Naive method with sorting', 'Naive method without sorting', 'Method with layers', 'Method with tree']
+
+    # only show systematical search if the highest n was 7, otherwise it would take too long
+    if args.number_of_boxes + ((args.number_of_problems - 1) * args.step - 1) <= 7:
+        times.append(times_sys_search)
+        theoretical_times.append(theoretical_times_sys_search)
+        algorithms_names.append("Systematical search")
 
     for i in range(len(times)):
         t_median = times[i][median]

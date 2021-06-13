@@ -1,13 +1,15 @@
 import numpy as np
 import argparse
 import sys
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 
-def generate(no_boxes, avg_number_boxes_width, avg_number_boxes_length, average_height=1, std_weight=8, std_length=4, std_height=3, width=1000, length=1000):
+def generate(no_boxes, avg_number_boxes_width, avg_number_boxes_length, average_height=10, std_width=30, std_length=40, std_height=2, width=1000, length=1000):
     mean_width = width / avg_number_boxes_width
     mean_length = length / avg_number_boxes_length
 
-    widths = np.random.normal(mean_width, std_weight, size=no_boxes)
+    widths = np.random.normal(mean_width, std_width, size=no_boxes)
     lengths = np.random.normal(mean_length, std_length, size=no_boxes)
     heights = np.random.normal(average_height, std_height, size=no_boxes)
 
