@@ -54,7 +54,7 @@ The final height for search with layers is 11.378883254225343
 The final height for search with tree is 8.808003603782272
 ```
 - for mode 3 we obtain a table with 3 columns. First column is the number of boxes, second column is the time in miliseconds that it takes given algorithm to run, third column is the coefficient q calculated from the formula:
-![Image](/images/formula.png)
+![Image](/images/formula.png)  
 Example output for one of the algorithms:
 ```
 Method with layers
@@ -63,4 +63,12 @@ Method with layers
 150      0.26610000000000245     1.0
 200      0.33520000000000216     0.7144748576432071
 ```
+
+## Files and their purpose
+There are 5 python files in our directory:
+- ```main.py``` - file used to solve the problem in 3 different modes. It includes parses for the terminal arguments and uses appropriate method that the user requested. (default mode is 3)
+- ```algorithms.py``` - this file includes all of the five algorithms that solve the problem.
+- ```methods.py``` - in this file we implemented 3 different modes that can be used during running the program
+- ```Node.py``` - file that includes Node class for tree algorithm
+- ```generate.py``` - file used to generate data. The data is generated from normal distribution, parameters of the distribution can be changed in generate function.
 
