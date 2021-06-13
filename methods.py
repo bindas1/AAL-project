@@ -56,39 +56,54 @@ def method_3(args):
         bin_, boxes = generate.generate(n, args.avg_number_boxes_width, args.avg_number_boxes_length)
 
         # print("Naive with sort:")
-        start = timer()
-        algorithms.naive_sort(bin_, boxes)
-        end = timer()
-        times_naive_sort.append((end - start) * 1000)
+        times = 0
+        for s in range(args.samples):
+            start = timer()
+            _ = algorithms.naive_sort(bin_, boxes)
+            end = timer()
+            times += (end - start) * 1000
+        times_naive_sort.append(times/args.samples)
         theoretical_times_naive_sort.append(n * np.log(n) + n + 1)
 
         # print("Naive without sort:")
-        start = timer()
-        algorithms.naive(bin_, boxes)
-        end = timer()
-        times_naive.append((end - start) * 1000)
+        times = 0
+        for s in range(args.samples):
+            start = timer()
+            algorithms.naive(bin_, boxes)
+            end = timer()
+            times += (end - start) * 1000
+        times_naive.append(times/args.samples)
         theoretical_times_naive.append(n + 1)
 
-        if n < 10:
+        if n <= 5:
             # print("Systematic search:")
-            start = timer()
-            algorithms.systematic_search(bin_, boxes)
-            end = timer()
-            times_sys_search.append((end - start) * 1000)
+            times = 0
+            for s in range(args.samples):
+                start = timer()
+                algorithms.systematic_search(bin_, boxes)
+                end = timer()
+                times += (end - start) * 1000
+            times_sys_search.append(times/args.samples)
             theoretical_times_sys_search.append(math.factorial(n))
 
         # print("Search with layers:")
-        start = timer()
-        algorithms.layer_search(bin_, boxes)
-        end = timer()
-        times_layers.append((end - start) * 1000)
+        times = 0
+        for s in range(args.samples):
+            start = timer()
+            algorithms.layer_search(bin_, boxes)
+            end = timer()
+            times += (end - start) * 1000
+        times_layers.append(times/args.samples)
         theoretical_times_layers.append(n + n * np.log(n) + n ** 2 + 1)
 
         # print("Search with tree:")
-        start = timer()
-        algorithms.tree_search(bin_, boxes)
-        end = timer()
-        times_tree.append((end - start) * 1000)
+        times = 0
+        for s in range(args.samples):
+            start = timer()
+            algorithms.tree_search(bin_, boxes)
+            end = timer()
+            times += (end - start) * 1000
+        times_tree.append(times/args.samples)
         theoretical_times_tree.append(n + n * np.log(n) + n ** 2 + 1)
 
     # calculating q(n) for naive
@@ -107,5 +122,5 @@ def method_3(args):
             q.append((times[i][el] * theoretical_median) / (theoretical_times[i][el] * t_median))
 
         for el in range(len(times[i])):
-            print(args.number_of_boxes + el * args.step, times[i][el], q[el])
+            print(args.number_of_boxes + el * args.step, "\t", times[i][el], "\t", q[el])
         print(" ")

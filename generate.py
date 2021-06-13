@@ -39,8 +39,8 @@ def generate(no_boxes, avg_number_boxes_width, avg_number_boxes_length, average_
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generation parameters')
     parser.add_argument('--number_of_boxes', '-n', type=int, default=50, help='Number of boxes to be inserted')
-    parser.add_argument('--avg_number_boxes_width', '-bw', type=int, default=5, help='Average number of boxes that fit in width')
-    parser.add_argument('--avg_number_boxes_length', '-bl', type=int, default=5, help='Average number of boxes that fit by width')
+    parser.add_argument('--avg_number_boxes_width', '-w', type=int, default=5, help='Average number of boxes that fit in width')
+    parser.add_argument('--avg_number_boxes_length', '-l', type=int, default=5, help='Average number of boxes that fit by length')
     args = parser.parse_args()
 
     _, boxes = generate(args.number_of_boxes, args.avg_number_boxes_width, args.avg_number_boxes_length)
