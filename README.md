@@ -35,8 +35,8 @@ Additionaly we can use ```generate.py``` to generate specific data for standard 
 
 ## Input and output
 Input should be a text file (any format that can be used for stdin) and be structured like in the example below:
-20,10,10
+```20,10,10
 50,30,20
 10,20,5
-...
+...```
 All edges should be separated by commas and each cuboid should be written in new line.
